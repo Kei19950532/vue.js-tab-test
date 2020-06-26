@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>タブ</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+  <link rel="stylesheet" href="https://cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+  <link rel="stylesheet" href="https://cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+  <style>
+    .tab {
+      list-style: none;
+      border-bottom: 1px solid #ccc;
+    }
+    .tab-item {
+      border: 1px solid transparent;
+      border-bottom: none;
+      display: inline-block;
+      margin: 0 0 -1px;
+      border-radius: 4px 4px 0 0;
+    }
+    .tab-item:hover {
+      border-color: #ccc;
+    }
+    .tab-item a {
+      display: block;
+      padding: 10px 15px;
+    }
+    .tab-item.active {
+      border-color: #ccc;
+      background-color: #fff;
+    }
+    .tab-item.active a {
+      color: #606c76;
+    }
+  </style>
+</head>
+<body>
+<div class="container" id="app">
+  <h1>test_tab</h1>
+  <ul class="tab">
+    <li class="tab-item" v-for="(item, index) in items" :key="index" :class="{ active: active === index }">
+      <a href="#" @click.prevent="activate(index)">{{ item }}</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane" v-show="active === 0">
+      <p>琴（きん、こと）とは、日本の伝統楽器。日本で「こと」と呼ばれる楽器は、（1）琴（きん）、（2）箏（そう）、（3）和琴 （わごと）、(4)　一絃琴 (須磨琴)、(5) 二絃琴 (八雲琴)　がある。</p>
+      <p>（1）琴（きん）と（2）箏（そう）は混同されることがあるが、両者の違いは、（1）琴は弦を押さえる場所で音程を決める（和琴は柱を使う）。（2）箏は柱（じ）と呼ばれる可動式の支柱で弦の音程を調節する。いずれも、指にはめた爪（ピック）または指（あるいは手の爪）で弦を弾いて音を出す。（Wikipedia参照）</p>
+    </div>
+    <div class="tab-pane" v-show="active === 1">
+      <p>13絃・15絃・17絃・25絃など、お琴と一言で言っても多種多様な種類があります。例えば13絃は･･･</p>
+      <p>25絃の様な弦の本数が多いお琴は現代的な音楽の世界では多く用いられている。何故なら･･･</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      active: 0,
+      items: [
+        'お琴とは',
+        'どんな種類があるの？'
+      ]
+    },
+    methods: {
+      activate: function (index) {
+        this.active = index;
+      }
+    }
+  });
+</script>
+</body>
+</html>
